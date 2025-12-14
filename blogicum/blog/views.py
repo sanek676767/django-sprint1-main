@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from django.http import Http404
-from django.http import HttpResponse
+
 
 posts = [
     {
@@ -44,25 +43,28 @@ posts = [
                 укутывал их, чтобы не испортились от дождя.''',
     },
 ]
- 
+
+
 def index(request):
     return render(
         request,
         'blog/index.html',
-        {'posts': posts[::-1]}
+        {'posts': posts[::-1]},
     )
-
 
 
 def post_detail(request, id):
     post = next(p for p in posts if p['id'] == id)
-    return render(request, 'blog/detail.html', {'post': post})
-
+    return render(
+        request,
+        'blog/detail.html',
+        {'post': post},
+    )
 
 
 def category_posts(request, category_slug):
     return render(
         request,
         'blog/category.html',
-        {'category_slug': category_slug}
+        {'category_slug': category_slug},
     )
