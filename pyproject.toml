@@ -1,0 +1,5 @@
+[tool.isort]
+profile = "black"
+src_paths = ["blogicum"]
+known_first_party = ["blog", "pages"]
+line_length = 79

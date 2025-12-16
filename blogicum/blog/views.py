@@ -1,7 +1,9 @@
+from typing import Dict, List
+
+from django.http import Http404
 from django.shortcuts import render
 
-
-posts = [
+posts: List[dict] = [
     {
         'id': 0,
         'location': 'Остров отчаянья',
@@ -44,6 +46,12 @@ posts = [
     },
 ]
 
+# Словарь для быстрого доступа по id (НЕ называется posts — как просил ревьюер)
+POSTS_BY_ID: Dict[int, dict] = {
+    post['id']: post
+    for post in posts
+}
+
 
 def index(request):
     return render(
@@ -54,7 +62,11 @@ def index(request):
 
 
 def post_detail(request, id):
-    post = next(p for p in posts if p['id'] == id)
+    try:
+        post = POSTS_BY_ID[id]
+    except KeyError:
+        raise Http404('Пост не найден')
+
     return render(
         request,
         'blog/detail.html',

@@ -12,62 +12,20 @@
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
-    <title>
-      {% block title %}
-      {% endblock %}
-    </title>
+    <title>{% block title %}{% endblock %}</title>
   </head>
 
   <body>
 
-    <!-- ===== HEADER ===== -->
-    <header>
-      <nav class="navbar navbar-light" style="background-color: lightskyblue">
-        <div class="container">
+    {% include "includes/header.html" %}
 
-          <a class="navbar-brand" href="{% url 'blog:index' %}">
-            <img
-              src="{% static 'img/logo.png' %}"
-              width="30"
-              height="30"
-              class="d-inline-block align-top"
-              alt="Логотип"
-            >
-            Блогикум
-          </a>
-
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog:index' %}">
-                Лента записей
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'pages:about' %}">
-                О проекте
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'pages:rules' %}">
-                Наши правила
-              </a>
-            </li>
-          </ul>
-
-        </div>
-      </nav>
-    </header>
-
-    <!-- ===== MAIN ===== -->
     <main>
-      {% block content %}
-      {% endblock %}
+      <div class="container py-5">
+        {% block content %}{% endblock %}
+      </div>
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="border-top text-center py-3">
-      <p>© Блогикум</p>
-    </footer>
+    {% include "includes/footer.html" %}
 
   </body>
 </html>

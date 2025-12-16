@@ -2,7 +2,6 @@ import re
 
 import pytest
 from pytest_django.asserts import assertTemplateUsed
-
 from tests.conftest import try_get_url
 
 
